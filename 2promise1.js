@@ -38,7 +38,9 @@ let Promise = require('./2promise2实现原理1.js');   // 引入一个自己写
 
 let promise = new Promise( (resolve , reject) => {   //Promise 执行器
     // throw new Error('失败');     //
-    reject(333)
+    setTimeout(()=>{   //这里是异步，可能走到下面then的时候，这里还没有走完，没有状态
+        reject(333)
+    },100)
 })
 
 promise.then( data => {     
