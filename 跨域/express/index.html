@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <!-- 这里可以引用线上链接，同样的还有img\script\link 不受同源策略约束，可以引用外部的资源 -->
+    <!-- jsonp:创建一个script标签，把文件引进来 -->
+    <title>Document</title>
+</head>
+<body>
+
+
+    
+    <script>
+    // 缺点：只能发送get请求，不支持post put  delete
+    // 不安全，xss攻击，返回的接口结果里有个script标签，就把别人的脚本放到你的页面里了不安全，有些网站不用了
+    
+    // 封装jsonp，对刚才引入script的过程封装一下
+    function jsonp({url,params,cb}){
+        return new Promise( (resolve,reject)=>{   //jsonp可以then，所以返回的是个promise
+            // 声明一个全局的函数，等着被调用，全局放在window上
+            window[cb]=function(data){   //这是声明的回调，就是那个show，里面的data是show的参数
+                resolve(data);
+                document.body.removeChild(script);  //调完回调，再删除script
+            }   //这是定义的函数，
+
+            params = {...params,cb};   // params = {...params,cb:cb};  这样的简写
+            let arrs = [];
+            for(let key in params){
+                arrs.push(`${key} = ${arrs[key]}`);   //里面放的是字符串
+            }
+            let script = document.createElement('script');  //创建script，引入src
+            script.src = `${url}?${arrs.join('&')}`;
+            document.body.appendChild(script);
+        })
+    }
+
+    // 实际用的时候，我们一般用一个第三方的包，使用方法大概猜想如下：
+
+    jsonp({
+        url:"http://localhost:3000/say",
+        params:{
+            prod:'pc',
+            wd:'你好',
+            },
+        cb:'show'
+    }).then( data =>{   //成功后调用
+        console.log(data);  
+        
+    })
+    </script>
+
+</body>
+</html>

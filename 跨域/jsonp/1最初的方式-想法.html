@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <!-- 这里可以引用线上链接，同样的还有img\script\link 不受同源策略约束，可以引用外部的资源 -->
+    <!-- jsonp:创建一个script标签，把文件引进来 -->
+
+    ajax肯定会发到服务器，只是服务器的返回结果被浏览器给屏蔽掉了，
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <script>
+        // 2.定义函数
+    function show(data){  //这个data 就是show函数的参数，如下传入了一个对象
+        console.log(data); 
+        // 3. 这样我们就在文件域里引用了别人家的域里的数据，实现了跨域
+    }
+    </script>
+
+    <!-- 1.引入这个链接 -->
+    <script src="https://www.baidu.com/sugrec?prod=pc&wd=1112&cb=show"></script>
+    <!-- 这里面是函数执行，要放在函数定义的后面，打开后内容是：
+        show({"q":"1112","p":false,"g":[{"type":"sug","sa":"s_1","q":"快递单号查询"},{"type":"sug","sa":"s_2","q":"顺丰快递单号查询"},{"type":"sug","sa":"s_3","q":"11月12日是什么星座"},{"type":"sug","sa":"s_4","q":"1112什么意思"},{"type":"sug","sa":"s_5","q":"快手"},{"type":"sug","sa":"s_6","q":"11121314151617181920的英语怎么读"},{"type":"sug","sa":"s_7","q":"快手下载"},{"type":"sug","sa":"s_8","q":"1112打印"},{"type":"sug","sa":"s_9","q":"1112什么星座"},{"type":"sug","sa":"s_10","q":"11123"}],"slid":"934594986715168245"})
+
+        如上的链接是百度的接口，访问会返回一个：  show({xx:'xx'})这是个函数执行，
+        我们只需要写一个show 函数的定义-->
+</body>
+</html>
