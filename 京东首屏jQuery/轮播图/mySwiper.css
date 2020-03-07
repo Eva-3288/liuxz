@@ -1,0 +1,80 @@
+/* 样式的初始化-去除标签的默认样式 */
+.my-create-swiper-box > * {  
+    /* my-create-swiper-box下直接的子元素里的所有元素 */
+    padding:0;
+    margin:0;
+    list-style: none;
+}
+.my-create-swiper-box{
+width: 100%;
+height: 100%;
+position: relative;
+overflow: hidden;
+}
+/* ----------淡入淡出---------- */
+/* 淡入淡出和父级宽高一样 */
+.my-create-swiper-box.my-swiper-fade{
+    width:100%;
+    height:100%;
+}
+/* 并且子项都是重叠的 */
+.my-swiper-fade  .my-create-swiper-li{
+position: absolute;
+}  
+
+/* ----------左右滑动-------- */
+/* box在wrapper里的位置：定位找位置 */
+.my-create-swiper-box.my-swiper-animate  .my-create-swiper-ul{
+position: absolute;
+left: 0;
+}
+/* 子项浮动 占据一行 */
+.my-swiper-animate .my-create-swiper-li{
+    float: left;
+}
+
+
+/* --左右按钮--- */
+.my-create-swiper-btn{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background: rgba(0,0,0,0.3);
+    color:#fff;
+    position: absolute;
+    top:50%;
+    margin-top:-25px;
+    cursor: pointer;
+}
+.my-create-swiper-leftbtn{
+    left:0;
+    border-top-right-radius:50%;
+    border-bottom-right-radius:50%;
+
+}
+.my-create-swiper-rightbtn{
+    right:0;
+    border-top-left-radius:50%;
+    border-bottom-left-radius:50%;
+}
+/* --小圆点--- */
+.my-create-swiper-spots{
+    position: absolute;
+    bottom:10px;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    text-align: center;
+}
+.my-create-swiper-spots span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin:0 5px;
+    cursor: pointer;
+}
+.my-create-swiper-spots span.active{
+    background: orange;
+}

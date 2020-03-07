@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="./mySwiper.css">
+    <style>
+        .wrapper{
+            width:300px;
+            height:250px;
+            border:1px solid #ccc;
+            margin:50px auto;
+        }
+        .item{
+            width: 300px;
+            height: 250px;
+        }
+        .item1{
+            background: seagreen;
+        }
+        .item2{
+            background: salmon;
+        }
+        .item3{
+            background: slateblue;
+        }
+        .item4{
+            background: steelblue;
+        }
+        .demo{
+            width:200px;
+            height:200px;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+    </div>
+    <div class="demo">
+
+    </div>
+    --------------------
+    <div class="imglists">
+    <div class="item item1">item1</div>
+    <div class="item item2">item2</div>
+    <div class="item item3">item3</div>
+    <div class="item item4">item4</div>
+    </div>
+
+    <!-- <div class="imglists">
+        <div class="item1">item1</div>
+        <div class="item1">item2</div>
+        <div class="item1">item3</div>
+        <div class="item1">item4</div>
+        </div> -->
+
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="./mySwiper.js"></script>
+    <script>
+        
+$('.wrapper').swiper({
+    list: $('.item'),     //传的这是dom节点列表
+    type: 'fadeIn',
+    isAuto: true,
+    showChangeBtn: true,
+    showSpotBtn: true,
+    autoTime: 3000,
+    width: 300,
+    height: 250,
+    direction: 'right'
+  })
+
+  //两个地方调用轮播图，保证在方法里处理的css写的时候要带作用域
+  $('.demo').swiper({
+    list: $('.item').clone(true),     //传的这是dom节点列表
+    type: 'animate',
+    isAuto: true,
+    showChangeBtn: true,
+    showSpotBtn: false,
+    autoTime: 3000,
+    width: 300,
+    height: 250,
+    direction: 'right'
+  })
+    </script>
+</body>
+</html>
