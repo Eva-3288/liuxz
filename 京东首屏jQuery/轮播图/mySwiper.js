@@ -32,7 +32,8 @@ $('.wrapper').swiper({
         this.list = options.list || [];   //兼容处理，如果没有传就给一个空数组
         this.num = this.list.length;
         this.curIndex = 0;
-        this.type = options.type || 'fade';
+        this.lock=false;  //加锁，默认是没锁的，当animate 动画点击的时候，点的太快就加锁，执行完动画才能执行新的点击事件里的代码
+        this.type = options.type || 'fadeIn';
         this.isAuto = options.isAuto == undefined ? true : options.isAuto; //options.isAuto的值是布尔值 
         this.showChangeBtn = options.showChangeBtn == undefined ? true : options.showChangeBtn;
         this.showSpotBtn = options.showSpotBtn == undefined ? true : options.showSpotBtn;
@@ -122,21 +123,38 @@ $('.wrapper').swiper({
         })
 
         $('.my-create-swiper-leftbtn',this.wrapper).click(function(e){   //点左按钮
+            // 点击的时候先判断下有锁没锁
+            if(that.lock){  //锁上了 就先不执行这个点击事件里的代码
+                return false;
+            }
+            that.lock = true;   //进来先上锁 ，然后执行代码，等轮播动画执行完 把锁去掉，轮播没切换完就有锁，下次快速点击也不会执行这里的代码
+
             // 在这里面this改变了，指向当前的调用click的元素，左按钮--dom节点
             // 原生js里用bind改变this指向，jq里bind代表绑定事件，而且JQ3.x里没有bind
-           if(that.curIndex == 0){
+           if(that.type == 'fadeIn' && that.curIndex == 0){
                that.curIndex = that.num -1;
+           }else if(that.type == 'animate' && that.curIndex == 0){
+                $('.my-create-swiper-ul',that.wrapper).css({left:-that.num * that.width});
+                that.curIndex = that.num -1;
            }else{
                that.curIndex -- ;
            }
            //上面是点击后获得当前显示项，然后还要切换录播
-            that.changeItem();   //切换内容选项，动画形式
+            that.changeItem();   //切换内容选项，动画形式 ，
             
         })
 
         $('.my-create-swiper-rightbtn',this.wrapper).click(function(e){   //点右按钮
-           if(that.curIndex == that.num -1){  //最后一项点右按钮，变第一个
+            if(that.lock){  //锁上了 就先不执行这个点击事件里的代码
+                return false;
+            }
+            that.lock = true;
+          //animate滑动的时候，要做无缝衔接，判断和淡入不同
+            if(that.type == 'fadeIn' && that.curIndex == that.num -1){  //如果是淡入淡出  且  点击的是视觉上的最后一个，那让curIndex 变第一个0
                that.curIndex = 0;
+           }else if(that.type == 'animate' && that.curIndex == that.num){   //如果是animate  且点击的是我们添加了那一个复制的第一项
+            $('.my-create-swiper-ul',that.wrapper).css({left:0});    //ul的left变成0,瞬间变成第一张的位置, 用css  不要用animate  
+            that.curIndex = 1;
            }else{
                that.curIndex ++ ;
            }
@@ -146,6 +164,10 @@ $('.wrapper').swiper({
         })
 
         $('.my-create-swiper-spots > span',this.wrapper).mouseenter(function(){  //鼠标移入小圆点mouseenter
+            if(that.lock){  //锁上了 就先不执行这个点击事件里的代码
+                return false;
+            }
+            that.lock = true;
             // console.log($(this).index());  //点击列表里的某一项， $('.item).index()  获取点击项的索引值
             that.curIndex = $(this).index();
             that.changeItem();
@@ -153,11 +175,22 @@ $('.wrapper').swiper({
             
         })
     }
-    Swiper.prototype.changeItem = function(index){
-        if(this.type == 'fadeIn'){
-            $('.my-create-swiper-li',this.wrapper).fadeOut().eq(this.curIndex).fadeIn();
-            $('.my-create-swiper-spots > span',this.wrapper).removeClass('active').eq(this.curIndex).addClass('active');
+    Swiper.prototype.changeItem = function(index){   //切换轮播
+        var that = this;
+        if(this.type == 'fadeIn'){    //淡入淡出
+            $('.my-create-swiper-li',this.wrapper).fadeOut().eq(this.curIndex).fadeIn(function(){
+                //这里也是动画执行完后的回调
+                that.lock = false;
+            });
+        }else if(this.type == 'animate'){
+            var leftdistance = this.curIndex * this.width;
+            $('.my-create-swiper-ul',this.wrapper).animate({left:-leftdistance},function(){   // animate动画执行完的回调函数
+                //这个回调函数里this指向调用方法的jquery对象
+                that.lock = false;  //动画执行完，把锁去掉
+            })  //一定要写作用域,  1-2切换是ul 向左走，left 为负
         }
+        // 淡入淡出正常处理，但animate的时候图片his.curIndex是 0 1 2 3 4（总是多一个，这是复制的0）  而小圆点是 0 1 2 3 ，我们可以让this.curIndex % this.num  这样区域后 变成 0 1 2 3 0   和 0 1 2 3  是对应的
+        $('.my-create-swiper-spots > span',this.wrapper).removeClass('active').eq(this.curIndex % this.num).addClass('active');   //改变小圆点的显示状态
     }
     Swiper.prototype.autoChange = function(){
         var that = this;
