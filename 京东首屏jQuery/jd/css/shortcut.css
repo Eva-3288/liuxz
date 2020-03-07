@@ -1,0 +1,12 @@
+/* 顶部区域样式 */
+.shortcut{
+    width: 100%;
+    background: #e3e4e5;
+    height:30px;
+}
+.position{
+    float: left;
+}
+.nav{
+    float:right;
+}
