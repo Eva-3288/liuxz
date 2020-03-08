@@ -4,8 +4,10 @@
     list-style: none;
     text-decoration: none;
 }
+/* 写在body下，代表body下所有元素都可以继承这个文字大小 */
 
-.w{
-    width: 1190px;
-    margin:0 auto;
+body{
+    font-size:12px;
 }
+
+

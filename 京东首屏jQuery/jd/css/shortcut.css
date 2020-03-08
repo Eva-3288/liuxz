@@ -1,12 +1,154 @@
 /* 顶部区域样式 */
-.shortcut{
-    width: 100%;
-    background: #e3e4e5;
-    height:30px;
+.shortcut {
+  width: 100%;
+  background: #e3e4e5;
+  color: #999;
+  /*字体颜色也可以继承，a标签除外*/
 }
-.position{
-    float: left;
+.shortcut .main {
+  width: 1190px;
+  margin: 0 auto;
+  height: 30px;
+  line-height: 30px;
+  /*line-height可以继承*/
 }
-.nav{
-    float:right;
+.shortcut .main .position {
+  float: left;
 }
+.shortcut .main .nav {
+  float: right;
+}
+.shortcut .main .nav li {
+  float: left;
+}
+.shortcut .main .nav li.line {
+  background: #ccc;
+  height: 10px;
+  width: 1px;
+  margin: 11px 5px 0;
+}
+.shortcut .main .nav li.nav-item {
+  /* box-sizing: border-box;   这里无效，因为li没有设置宽度，是被内容撑开的，值：border-box /content-box
+                盒模型分为标准盒模型 和 ie6混杂盒模型，区别在于设置的宽度是否包含padding 和 border的值
+                默认是标准的盒模型：宽度 不包含padding 和 border
+                border-box :这个宽度包含border  和padding
+                */
+}
+.shortcut .main .nav li.nav-item .item-content {
+  padding-left: 7px;
+  padding-right: 7px;
+  position: relative;
+}
+.shortcut .main .nav li.nav-item .item-content a {
+  color: #999;
+}
+.shortcut .main .nav li.nav-item .item-content a:hover {
+  color: red;
+}
+.shortcut .main .nav li.hasDropdown {
+  position: relative;
+}
+.shortcut .main .nav li.hasDropdown:hover .item-content {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #fff;
+  z-index: 10;
+  /*z-index 必须在定位元素上生效*/
+}
+.shortcut .main .nav li.hasDropdown:hover .dropdown {
+  display: block;
+}
+.shortcut .main .nav li.hasDropdown .item-content {
+  padding-right: 20px;
+  border: 1px solid transparent;
+}
+.shortcut .main .nav li.hasDropdown .item-content .iconfont {
+  position: absolute;
+  /* 图标是定位过去的 */
+  top: 10px;
+  right: 6px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+.shortcut .main .nav li.hasDropdown .dropdown {
+  position: absolute;
+  top: 30px;
+  border: 1px solid #ccc;
+  background: #fff;
+  display: none;
+}
+.shortcut .main .nav li.hasDropdown .dropdown a {
+  color: #999;
+}
+.shortcut .main .nav li.hasDropdown .dropdown a:hover {
+  color: red;
+}
+.shortcut .main .nav li.hasDropdown .dropdown dl {
+  overflow: hidden;
+  /*清浮动，也可以用伪元素加clear:both*/
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.shortcut .main .nav li.hasDropdown .dropdown dl:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.shortcut .main .nav li.hasDropdown .dropdown dt {
+  font-weight: 600;
+  color: #666;
+}
+.shortcut .main .nav li.hasDropdown .dropdown dd {
+  float: left;
+}
+.shortcut .main .nav li.hasDropdown.myjd .dropdown {
+  width: 280px;
+  padding: 10px;
+}
+.shortcut .main .nav li.hasDropdown.myjd .dropdown dd {
+  width: 126px;
+}
+.shortcut .main .nav li.hasDropdown.componybuy .dropdown {
+  width: 154px;
+  padding: 10px;
+}
+.shortcut .main .nav li.hasDropdown.componybuy .dropdown dd {
+  width: 76px;
+}
+.shortcut .main .nav li.hasDropdown.server .dropdown {
+  right: 0;
+  width: 154px;
+  padding: 10px;
+}
+.shortcut .main .nav li.hasDropdown.server .dropdown dd {
+  width: 76px;
+}
+.shortcut .main .nav li.hasDropdown.internetList .dropdown {
+  right: -76px;
+  width: 1190px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.shortcut .main .nav li.hasDropdown.internetList .dropdown dl {
+  float: left;
+  width: 275px;
+  border-bottom: 0;
+  border-right: 1px solid #ccc;
+  margin-right: 20px;
+}
+.shortcut .main .nav li.hasDropdown.internetList .dropdown dl:last-child {
+  border-right: 0;
+  margin-right: 0;
+  width: 255px;
+}
+.shortcut .main .nav li.hasDropdown.internetList .dropdown dd {
+  width: 84px;
+}
+/* + 是相邻选择符， 紧挨着的同级元素*/
+/* .dt-icon:hover + .dropdown {   
+    display: block;
+} */
