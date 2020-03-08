@@ -1,0 +1,80 @@
+.header {
+  background-color: red;
+  width: 1190px;
+  height: 140px;
+  margin: 0 auto;
+  position: relative;
+}
+.header .logo {
+  position: absolute;
+  top: 10px;
+  background: #fff;
+}
+.header .logo a {
+  display: inline-block;
+  width: 190px;
+  height: 120px;
+  background: url(//misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/sprite/header/sprite.png);
+}
+.header .header-center {
+  position: absolute;
+  left: 200px;
+  height: 140px;
+  background: orange;
+}
+.header .header-center .searchBox {
+  position: absolute;
+  left: 60px;
+  top: 25px;
+  width: 546px;
+  height: 32px;
+  border: 2px solid #e2231a;
+  background: #fff;
+}
+.header .header-center .searchBox #searchInput {
+  height: 32px;
+  padding: 0 20px;
+  border: 0;
+  width: 422px;
+  outline: none;
+}
+.header .header-center .searchBox #searchBtn {
+  position: absolute;
+  right: 0;
+  width: 80px;
+  height: 32px;
+  line-height: 34px;
+  color: #fff;
+  background: #e2231a;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.header .header-center .searchBox .searchList {
+  position: absolute;
+  top: 34px;
+  width: 452px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.header .header-center .searchBox .searchList li {
+  height: 24px;
+  line-height: 24px;
+  padding: 1px 5px;
+  overflow: hidden;
+  color: #666;
+  cursor: pointer;
+}
+.header .header-center .searchBox .searchList li:hover {
+  background: #f0f0f0;
+}
+.header .header-center .searchBox .searchList li span {
+  display: inline-block;
+  width: 49%;
+}
+.header .header-center .searchBox .searchList li i {
+  display: inline-block;
+  width: 50%;
+  font-style: normal;
+  text-align: right;
+}
