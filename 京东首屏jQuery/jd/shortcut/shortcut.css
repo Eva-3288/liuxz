@@ -52,7 +52,7 @@
   background: #fff;
   border: 1px solid #ccc;
   border-bottom: 1px solid #fff;
-  z-index: 10;
+  z-index: 999;
   /*z-index 必须在定位元素上生效*/
 }
 .shortcut .main .nav li.hasDropdown:hover .dropdown {
@@ -79,6 +79,7 @@
   border: 1px solid #ccc;
   background: #fff;
   display: none;
+  z-index: 99;
 }
 .shortcut .main .nav li.hasDropdown .dropdown a {
   color: #999;

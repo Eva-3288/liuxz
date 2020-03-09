@@ -1,5 +1,5 @@
 .header{
-    background-color: red;
+    // background-color: red;
     width:1190px;
     height:140px;
     margin:0 auto;
@@ -18,8 +18,10 @@
     .header-center{
         position: absolute;
         left:200px;
+        width: 810px;
         height:140px;
-        background: orange;
+        // background: orange;
+        // 搜索框
         .searchBox{
             position: absolute;
             left:60px;
@@ -68,6 +70,106 @@
                     }
                 }
             }
+        }
+
+        // 购物车
+        .cartBox{
+            position: absolute;
+            width:130px;
+            height:36px;
+            top:25px;
+            left:626px;
+            background: #fff;
+            cursor: pointer;
+            &:hover{
+                .cart{
+                    border:1px solid #e1251b;
+                    border-bottom: 0;
+                    height:37px;
+                }
+                .cartDropdown{
+                    display: block;
+                }
+            }
+            .cart{
+                position: relative;
+                box-sizing: border-box;
+                width:130px;
+                height:36px;
+                line-height: 34px;
+                text-align: center;
+                border:1px solid #e3e4e5;
+                background: #fff;
+                color:#e1251b;
+                z-index: 9;
+                .iconfont{
+                    margin-right:10px;
+                    font-size: 20px;
+                }
+                span{
+                    position: absolute;
+                    left:30px;
+                    // top:2px;
+                    // width:12px;
+                    // height:12px;
+                    line-height: 12px;
+                    background: #e1251b;
+                    color:#fff;
+                    padding:3px 3px;
+                    border-radius:50%;
+                    text-align: center;
+                    font-size: 12px;
+                }
+            }
+            .cartDropdown{
+                display: none;
+                position: absolute;
+                width:400px;
+                padding:15px;
+                background:#fff ;
+                right:0;
+                top:36px;
+                border:1px solid #e1251b;
+                .empty{
+                    height: 49px;;
+                    line-height: 49px;
+                    padding-left:64px;
+                    font-size: 14px;;
+                    .cartImg{
+                        position: absolute;
+                        left:10px;
+                        width:56px;
+                        height:49px;
+                        background: url(//img11.360buyimg.com/uba/jfs/t3571/299/131233948/1117/a1196554/58004d6dN2927f0f7.png);
+                    }
+                }
+            }
+        }
+        .hotWords{
+            position: absolute;
+            left:60px;
+            top:65px;
+            width: 550px;
+            a{
+                float: left;
+                // background: blue;
+                color: #666;
+                padding-right:10px;
+                &:hover{
+                    color:#e1251b;
+                }
+            }
+        }
+    }
+    .header-right{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        a{
+            display: inline-block;
+            width: 190px;
+            height: 120px;
+            background-image: url(https://img12.360buyimg.com/babel/jfs/t1/88248/23/14255/31327/5e63dd3aEd18b2ad7/d43b091ce52da04d.png);
         }
     }
 }
