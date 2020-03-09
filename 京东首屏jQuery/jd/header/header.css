@@ -54,6 +54,7 @@
   position: absolute;
   top: 34px;
   width: 452px;
+  display: none;
   border: 1px solid #ccc;
   background: #fff;
 }
@@ -68,13 +69,6 @@
 .header .header-center .searchBox .searchList li:hover {
   background: #f0f0f0;
 }
-.header .header-center .searchBox .searchList li span {
-  display: inline-block;
-  width: 49%;
-}
-.header .header-center .searchBox .searchList li i {
-  display: inline-block;
-  width: 50%;
-  font-style: normal;
-  text-align: right;
+.header .header-center .searchBox .searchList li a {
+  color: #666;
 }
